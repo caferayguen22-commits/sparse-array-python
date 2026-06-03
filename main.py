@@ -64,3 +64,13 @@ class SparseArray:
 
         # Die virtuelle Gesamtlänge wächst um 1
         self._length += 1
+
+    # Unterstützung für den 'in'-Operator (z.B. if 7 in my_array:)
+    def __contains__(self, value):
+        if value = 0:
+            # Wenn weniger Elemente im Dict sind als die Gesamtlänge,
+            # bedeutet das, dass es mindestens eine virtuelle Null gibt.
+            return len(self._data) < self._length
+
+        # Für alle anderen Werte prüfen wir einfach die Werte im Dictionary
+        return value in self._data.values()
