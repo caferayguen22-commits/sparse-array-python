@@ -36,3 +36,22 @@ class SparseArray:
         else:
             # Nur echte Werte ungleich Null belegen Speicherplatz
             self._data[index] = value
+
+    # Elemente löschen mit del sa[index]
+    def __delitem__(self, index):
+        if index < 0 or index >= self._length:
+            raise IndexError("Index out of range")
+
+        new_data = {}
+        # Wir wandern durch unser aktuelles Dictionary und verschieben die Indizes
+        for k, v in self._data.items():
+            if k < index:
+                # Element VOR dem gelöschten Index bleiben gleich
+                new_data[k] = v
+            elif k > index:
+                # Elemente NACH dem gelöschten Index rutschen einen Platz nach links (-1
+                new_data[k -1] = v
+
+        self._data = new_data
+        # Da ein Element komplett weg ist, schrumpft unsere virtuelle Länge um 1
+        self._length -= 1
