@@ -55,3 +55,12 @@ class SparseArray:
         self._data = new_data
         # Da ein Element komplett weg ist, schrumpft unsere virtuelle Länge um 1
         self._length -= 1
+
+    # Fügt am Ende des Arrays einen neuen Wert hinzu
+    def append(self, value):
+        # Wenn der Wert ungleich Null ist, speichern wir ihn am aktuellen Ende ab
+        if value != 0:
+            self._data[self._length] = value
+
+        # Die virtuelle Gesamtlänge wächst um 1
+        self._length += 1
