@@ -90,4 +90,16 @@ class SparseArray:
         # 3. Verbinde beide Listen und gib ein neues SparseArray zurück
         return SparseArray(left_list + right_list)
 
+    # Unterstützung für den < Operator (less than)
+    def __lt__(self, other):
+        if not isinstance(other, SparseArray):
+            return NotImplemented
+        return self._length < other._length
+
+    # Unterstützung für den > Operator (greater than)
+    def __gt__(self, other):
+        if not isinstance(other, SparseArray):
+            return NotImplemented
+        return self._length > other._length
+
 
