@@ -22,3 +22,17 @@ class SparseArray:
 
         # Hole den Wert aus dem Dict. Wenn er nicht existiert, gib 0 zurück
         return self._data.get(index, 0)
+
+    # werte setzen mit sa[index] = value
+    def __setitem__(self, index, value):
+        # Auch hier: Index-Kontrolle!
+        if index < 0 or index >= self._length:
+            raise IndexError("Index out of range")
+
+        if value == 0:
+            # Wenn der Benutzer eine 0 setzt, löschen wir den Eintrag aus dem Dict (Speicher sparen!)
+            if index in self._data:
+                del self._data[index]
+        else:
+            # Nur echte Werte ungleich Null belegen Speicherplatz
+            self._data[index] = value
