@@ -67,10 +67,27 @@ class SparseArray:
 
     # Unterstützung für den 'in'-Operator (z.B. if 7 in my_array:)
     def __contains__(self, value):
-        if value = 0:
+        if value == 0:
             # Wenn weniger Elemente im Dict sind als die Gesamtlänge,
             # bedeutet das, dass es mindestens eine virtuelle Null gibt.
             return len(self._data) < self._length
 
         # Für alle anderen Werte prüfen wir einfach die Werte im Dictionary
         return value in self._data.values()
+
+    # Unterstützung für das Verketten von zwei Arrays mit +
+    def __add__(self, other):
+        # Wenn das andere Objekt kein SparseArry ist, brechen wir ab
+        if not isinstance(other, SparseArray):
+            return NotImplemented
+
+        # 1. Baue die komplette Liste (inkl. Nullen) für dieses Array nach
+        left_list = [self[i] for i in range(self._length)]
+
+        # 2. Baue die komplette Liste für das andere Array nach
+        right_list = [other[i] for i in range(other._length)]
+
+        # 3. Verbinde beide Listen und gib ein neues SparseArray zurück
+        return SparseArray(left_list + right_list)
+
+
