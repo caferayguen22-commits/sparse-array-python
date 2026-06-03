@@ -102,4 +102,33 @@ class SparseArray:
             return NotImplemented
         return self._length > other._length
 
+    def __repr__(self):
+        # Baue die Liste als Text zusammen, damit print() sie schön anzeigt
+        actual_list = [self[i] for i in range(self._length)]
+        return str(actual_list)
 
+# =========
+# TESTCODE
+# ==========================================
+if __name__ == "__main__":
+    print("--- Starte SparseArray Test ---")
+
+    # 1. Erstellen
+    arr1 = SparseArray([0, 7, 0, 5, 0])
+    print(f"Array 1: {arr1} | Virtuelle Länge: {len(arr1)}")
+
+    # 2. Wert ändern
+    arr1[2] = 9
+    print(f"Nach arr1[2] = 9: {arr1}")
+
+    # 3. Element löschen
+    del arr1[1]
+    print(f"Nach del arr1[1] (die 7 fliegt raus): {arr1} | Neue Länge: {len(arr1)}")
+
+    # 4. Append
+    arr1.append(12)
+    print(f"Nach append(12): {arr1}")
+
+    # 5. In-Operator
+    print(f"Ist 9 im Array? {9 in arr1}")
+    print(f"Ist 0 im Array? {0 in arr1}")
